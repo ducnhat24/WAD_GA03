@@ -18,6 +18,26 @@ app.get('/', (req, res) => {
     res.render('home');
 });
 
+app.get('/about_us', (req, res) => {
+    res.render('about_us');
+});
+
+app.get('/contact', (req, res) => {
+    res.render('contact');
+});
+
+app.get('/login', (req, res) => {
+    res.render('login');
+});
+
+app.get('/signup', (req, res) => {
+    res.render('signup');
+});
+
+app.get('/product/product_details', (req, res) => {
+    res.render('product_details');
+});
+
 app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`);
 });
