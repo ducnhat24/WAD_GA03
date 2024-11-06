@@ -20,10 +20,10 @@ function handleSubmitSignup() {
     const email = document.querySelector("#signup__email").value;
     const password = document.querySelector("#signup__password").value;
     if (!email || !password || !username) {
-        console.log("Please fill all fields");
+        alert("Please fill all fields");
         return;
     }
-    alert("Signup successful");
+
     // Send data to server
     fetch("/api/user/signup", {
         method: "POST",
@@ -32,12 +32,19 @@ function handleSubmitSignup() {
         },
         body: JSON.stringify({ username, email, password }),
     })
-        .then((res) => res.json())
-        .then((data) => {
-            if (data.error) {
-                alert(data.error);
-            } else {
-                alert("Signup successful");
+        .then((res) => {
+            if (!res.ok) {
+                throw new Error("Network response was not ok");
             }
+            return res.json();
+        })
+        .then((data) => {
+            console.log(data);
+            alert(data.msg); // This should now work if `msg` exists in the response
+            location.href = "/";
+        })
+        .catch((error) => {
+            console.error("Error:", error);
+            alert("There was an error processing your request.");
         });
 }

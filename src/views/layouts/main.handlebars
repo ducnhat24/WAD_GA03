@@ -65,27 +65,27 @@
             <div class="header__feature">
 
                 <div class="header__item">
-                    <a href="./index.html">Home</a>
+                    <a href="/">Home</a>
                 </div>
 
                 <div class="header__item">
-                    <a href="./pages/product_list.html">Product</a>
+                    <a href="/product">Product</a>
                 </div>
 
                 <div class="header__item">
-                    <a href="./pages/about_us.html">About</a>
+                    <a href="/about_us">About</a>
                 </div>
 
                 <div class="header__item">
-                    <a href="./pages/contact.html">Contact</a>
+                    <a href="/contact">Contact</a>
                 </div>
 
                 <div class="header__item">
-                    <a href="./pages/signup.html">Signup</a>
+                    <a href="/signup">Signup</a>
                 </div>
 
                 <div class="header__item">
-                    <a href="./pages/login.html">Login</a>
+                    <a href="/login">Login</a>
                 </div>
             </div>
         </div>
@@ -144,6 +144,14 @@
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
     <script src="/apps/script.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            if (window.location.pathname.includes("signup")) {
+                document.querySelector(".header").style.display = "none";
+                document.querySelector(".footer").style.display = "none";
+            }
+        });
+    </script>
 </body>
 
 </html>

@@ -6,9 +6,10 @@ class UserController {
         this.users = [];
     }
 
-    addUser(req, res) {
+    async addUser(req, res) {
         const { username, email, password } = req.body;
-        userService.addUser({ username, email, password });
+        const status = await userService.addUser({ username, email, password });
+        res.json(status);
     }
 
     getUsers(req, res) {

@@ -15,22 +15,37 @@ body {
     height: 100vh;
 }
 
-.banner img {
+.product_banner .img-container {
+    position: relative;
     width: 100%;
+    height: 400px;
+    background: url('/images/ProductDetailBackground.jpg') no-repeat center center/cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.banner__text {
+/* .product_banner img {
+    width: 100px;
+    height: 100%;
+    object-fit: contain;
+} */
+
+.banner__temp {
+    position: relative;
+}
+
+.banner__des {
     position: absolute;
-    bottom: 20px;
-    /* Khoảng cách từ đáy ảnh */
-    left: 25vw;
-    /* Khoảng cách từ trái */
-    color: white;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 0;
+    color: rgb(216, 160, 39);
+    -webkit-text-stroke: 1px #000;
     /* Màu chữ */
-    padding: 10px;
 }
 
-.banner__text h1 {
+.banner__des h1 {
     font-size: 3em;
 }
 
