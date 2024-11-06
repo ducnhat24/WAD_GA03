@@ -30,10 +30,10 @@
             {{#each products}}
             <div class="col">
                 <div class="card h-100 shadow-sm">
-                    <a href="/product/product_details"><img src="data:image/png;base64,{{this.image}}"
+                    <a href="/product/product_details/{{this.id}}"><img src="data:image/png;base64,{{this.image}}"
                             class="card-img-top" alt="BMW 6-Series"></a>
                     <div class="card-body">
-                        <a href="/product/product_details">
+                        <a href="/product/product_details/{{this.id}}">
                             <h5 class="card-title">{{this.name}}</h5>
                         </a>
                         <p class="card-text text-muted mb-1">{{this.price}}</p>

@@ -14,6 +14,7 @@ class ProductService {
                     name: true,
                     price: true,
                     description: true,
+                    image: true,
                 }
             });
             return products || [];
@@ -25,6 +26,49 @@ class ProductService {
 
     getProducts() {
         return this.products;
+    }
+
+    async getAllProducts() {
+        try {
+            const products = await this.prisma.product.findMany({
+                select: {
+                    id: true,
+                    name: true,
+                    price: true,
+                    description: true,
+                    image: true,
+                }
+            });
+            return products || [];
+        } catch (error) {
+            console.error(error);
+            throw new Error("An error occurred while fetching products");
+        }
+    }
+
+    async getProductById(id) {
+        try {
+            const product = await this.prisma.product.findUnique({
+                where: { id: id },
+                select: {
+                    id: true,
+                    name: true,
+                    price: true,
+                    description: true,
+                    power: true,
+                    torque: true,
+                    acceleration: true,
+                    maxSpeed: true,
+                    combinedConsumption: true,
+                    CO2Emissions: true,
+                    image: true,
+                }
+            });
+            return product || null;
+        } catch (error) {
+            console.error(error);
+            throw new Error("An error occurred while fetching the product");
+        }
     }
 }
 

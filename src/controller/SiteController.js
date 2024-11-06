@@ -30,8 +30,22 @@ class SiteController {
 
     }
 
-    showProductDetails(req, res) {
-        res.render('product_details');
+    // showProductDetails(req, res) {
+    //     res.render('product_details');
+    // }
+
+    async showProductDetails(req, res) {
+        const productId = req.params.id;
+        try {
+            const product = await productService.getProductById(productId);
+            if (!product) {
+                return res.status(404).send('Product not found');
+            }
+            res.render('product_details', { product });
+        } catch (error) {
+            console.error(error);
+            res.status(500).send('An error occurred while fetching product details');
+        }
     }
 }
 
