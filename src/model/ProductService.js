@@ -69,6 +69,28 @@ class ProductService {
             throw new Error("An error occurred while searching for products");
         }
     }
+
+    async getSameProduct(product) {
+        try {
+            const sameProducts = await prisma.product.findMany({
+                where: {
+                    id: { not: product.id },
+                    name: product.name
+                },
+                select: {
+                    id: true,
+                    name: true,
+                    price: true,
+                    description: true,
+                    image: true,
+                }
+            });
+            return sameProducts || [];
+        } catch (error) {
+            console.error(error);
+            throw new Error("An error occurred while fetching same products");
+        }
+    }
 }
 
 module.exports = ProductService;
