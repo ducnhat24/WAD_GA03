@@ -44,6 +44,37 @@ function handleSubmitSignup() {
             location.href = "/";
         })
         .catch((error) => {
+            alert("There was an error processing your request.");
+        });
+}
+
+function handleSubmitLogin() {
+    const useraccount = document.querySelector("#login__useraccount").value;
+    const password = document.querySelector("#login__password").value;
+    if (!useraccount || !password) {
+        alert("Please fill all fields");
+        return;
+    }
+
+    // Send data to server
+    fetch("/user/login", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ useraccount, password }),
+    })
+        .then((res) => {
+            if (!res.ok) {
+                throw new Error("Network response was not ok");
+            }
+            return res.json();
+        })
+        .then((data) => {
+            alert(data); // This should now work if `msg` exists in the response
+            location.href = "/";
+        })
+        .catch((error) => {
             console.error("Error:", error);
             alert("There was an error processing your request.");
         });

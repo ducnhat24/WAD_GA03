@@ -1,4 +1,5 @@
 const { PrismaClient } = require('@prisma/client');
+const { generateAccessToken } = require('../middleware/JWTAction');
 
 class UserService {
     constructor() {
@@ -36,6 +37,32 @@ class UserService {
 
     async getUsers() {
         return await this.prisma.user.findMany();
+    }
+
+    async login(user) {
+        const existingUser = await this.prisma.user.findFirst({
+            where: {
+                OR: [
+                    { email: user.useraccount },
+                    { name: user.useraccount }
+                ],
+                password: user.password
+            }
+        });
+
+        if (!existingUser) {
+            return { msg: "Invalid credentials" };
+        }
+
+        const payload = {
+            id: existingUser.id,
+            name: existingUser.name
+        };
+
+        return {
+            token: generateAccessToken(payload),
+            msg: "Login successful"
+        };
     }
 }
 

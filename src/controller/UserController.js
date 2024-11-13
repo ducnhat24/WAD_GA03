@@ -17,9 +17,16 @@ class UserController {
         res.json(status);
     }
 
-    getUsers(req, res) {
-        const users = userService.getUsers();
+    async getUsers(req, res) {
+        const users = await userService.getUsers();
         res.json(users);
+    }
+
+    async login(req, res) {
+        const { useraccount, password } = req.body;
+        const user = await userService.login({ useraccount, password });
+        res.cookie('token', user.token, { httpOnly: true });
+        res.json(user.msg);
     }
 }
 
