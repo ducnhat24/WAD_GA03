@@ -25,7 +25,7 @@ function handleSubmitSignup() {
     }
 
     // Send data to server
-    fetch("/api/user/signup", {
+    fetch("/user/signup", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",

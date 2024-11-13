@@ -46,10 +46,10 @@
             </div>
             <div class="header__account">
                 <div class="header__account__item">
-                    <a href="/signup">Signup</a>
+                    <a href="/user/signup">Signup</a>
                 </div>
                 <div class="header__account__item">
-                    <a href="/login">Login</a>
+                    <a href="/user/login">Login</a>
                 </div>
             </div>
         </div>
@@ -81,11 +81,11 @@
                 </div>
 
                 <div class="header__item">
-                    <a href="/signup">Signup</a>
+                    <a href="/user/signup">Signup</a>
                 </div>
 
                 <div class="header__item">
-                    <a href="/login">Login</a>
+                    <a href="/user/login">Login</a>
                 </div>
             </div>
         </div>
@@ -146,7 +146,7 @@
     <script src="/apps/script.js"></script>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
-            if (window.location.pathname.includes("signup")) {
+            if (window.location.pathname.includes("signup") || window.location.pathname.includes("login")) {
                 document.querySelector(".header").style.display = "none";
                 document.querySelector(".footer").style.display = "none";
             }

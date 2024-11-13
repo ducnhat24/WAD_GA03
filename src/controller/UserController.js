@@ -2,8 +2,13 @@ const UserService = require('../model/UserService');
 const userService = new UserService();
 
 class UserController {
-    constructor() {
-        this.users = [];
+
+    showSignup(req, res) {
+        res.render('signup');
+    }
+
+    showLogin(req, res) {
+        res.render('login');
     }
 
     async addUser(req, res) {
