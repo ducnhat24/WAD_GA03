@@ -13,7 +13,10 @@ class UserService {
             });
 
             if (existingUser) {
-                return { msg: "User already exists" };
+                return {
+                    status: "error",
+                    msg: "User already exists"
+                };
             }
 
             await this.prisma.user.create({
@@ -23,14 +26,22 @@ class UserService {
                     password: user.password
                 }
             });
-            return { msg: "User added successfully" };
+            return {
+                status: "success",
+                msg: "User added successfully"
+            };
         } catch (error) {
             if (error.code === 'P2002') {
-                console.error("Unique constraint failed: Email already exists.");
-            } else {
-                console.error("Error adding user:", error.message);
+
+                return {
+                    status: "error",
+                    msg: "User already exists"
+                }
             }
-            return { msg: "Error adding user" };
+            return {
+                status: "error",
+                msg: "Error adding user"
+            };
         }
 
     }
@@ -51,7 +62,10 @@ class UserService {
         });
 
         if (!existingUser) {
-            return { msg: "Invalid credentials" };
+            return {
+                status: "error",
+                msg: "Invalid credentials"
+            };
         }
 
         const payload = {
@@ -60,6 +74,7 @@ class UserService {
         };
 
         return {
+            status: "success",
             token: generateAccessToken(payload),
             msg: "Login successful"
         };

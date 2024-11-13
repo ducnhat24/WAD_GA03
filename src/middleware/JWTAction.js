@@ -20,23 +20,19 @@ const verifyToken = (req, res, next) => {
     const token = req.cookies.token;
 
     if (token == null) {
-        return res.status(401).json({
-            status: 'error',
-            message: 'Unauthorized'
-        });
+        req.isAuthenticated = false;
+        return next();
     }
 
 
     jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
         if (err) {
-            console.log(err)
-            return res.status(403).json({
-                status: 'error',
-                message: 'Forbidden'
-            });
+            req.isAuthenticated = false;
+            return next();
         }
 
-        req.user = user
+        req.user = user;
+        req.isAuthenticated = true;
         next()
     })
 }

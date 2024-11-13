@@ -26,7 +26,15 @@ class UserController {
         const { useraccount, password } = req.body;
         const user = await userService.login({ useraccount, password });
         res.cookie('token', user.token, { httpOnly: true });
-        res.json(user.msg);
+        res.json(user);
+    }
+
+    async logout(req, res) {
+        res.clearCookie('token');
+        return res.json({
+            status: 'success',
+            msg: 'Logged out'
+        });
     }
 }
 

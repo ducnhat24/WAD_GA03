@@ -1,14 +1,14 @@
 class SiteController {
     showHome(req, res) {
-        res.render('home');
+        res.render('home', { isAuthenticated: req.isAuthenticated });
     }
 
     showAboutUs(req, res) {
-        res.render('about_us');
+        res.render('about_us', { isAuthenticated: req.isAuthenticated });
     }
 
     showContact(req, res) {
-        res.render('contact');
+        res.render('contact', { isAuthenticated: req.isAuthenticated });
     }
 }
 
